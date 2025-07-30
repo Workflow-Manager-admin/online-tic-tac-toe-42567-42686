@@ -1,0 +1,202 @@
+:root {
+  --primary: #1976D2;
+  --secondary: #424242;
+  --accent: #FF5722;
+  --background: #f8fafc;
+  --surface: #ffffff;
+  --divider: #e0e0e0;
+  --border-radius: 16px;
+  --square-size: 80px;
+  --square-size-mobile: 56px;
+  --text-main: #222;
+}
+
+/* App Layout */
+.App,
+.ttt-bg {
+  background: var(--background);
+  min-height: 100vh;
+  font-family: 'Segoe UI', 'Roboto', 'Oxygen', 'Helvetica Neue', Arial, sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.ttt-container {
+  background: var(--surface);
+  border-radius: var(--border-radius);
+  box-shadow: 0 4px 24px 0 rgba(80, 75, 75, 0.08);
+  padding: 2.5rem 2.2rem 1.7rem 2.2rem;
+  margin-top: 5vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.ttt-player-row {
+  display: flex;
+  align-items: center;
+  gap: 1.4rem;
+  margin-bottom: 18px;
+  font-size: 1.2rem;
+  font-weight: 600;
+  letter-spacing: 0.015em;
+}
+
+.ttt-vs {
+  color: var(--secondary);
+  font-weight: 400;
+  opacity: 0.7;
+}
+
+/* Player indicator */
+.ttt-player-indicator {
+  padding: 3px 18px;
+  background: rgba(25, 118, 210, 0.08);
+  border-radius: 24px;
+  color: var(--secondary);
+  font-size: 1.12em;
+  font-weight: 500;
+  transition: background 0.2s, color 0.2s;
+  opacity: 0.95;
+  border: 1px solid transparent;
+}
+.ttt-player-indicator.active {
+  background: var(--accent);
+  color: #fff;
+  border: 1.7px solid var(--accent);
+  box-shadow: 0 4px 12px 0 rgba(255,87,34,0.10);
+}
+
+/* Board layout */
+.ttt-board {
+  display: grid;
+  grid-template-columns: repeat(3, var(--square-size));
+  grid-template-rows: repeat(3, var(--square-size));
+  gap: 0.8rem;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 1.3rem;
+  outline: none;
+}
+
+/* Game Square */
+.ttt-square {
+  background: #fff;
+  border: 2.5px solid var(--divider);
+  border-radius: 0.8em;
+  width: var(--square-size);
+  height: var(--square-size);
+  font-size: 2.7rem;
+  font-weight: 700;
+  color: var(--primary);
+  box-shadow: 0 2px 5px 0 rgba(67, 67, 67, 0.03);
+  cursor: pointer;
+  transition: border 0.22s, background 0.18s, color 0.2s, box-shadow 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  outline: none;
+  user-select: none;
+}
+
+.ttt-square:focus, .ttt-square:hover {
+  border-color: var(--accent);
+  box-shadow: 0 2px 11px 0 rgba(255,87,34,0.09);
+}
+
+.ttt-square[aria-label^='Cell with X'] {
+  color: var(--primary);
+  background: rgba(25,118,210,0.09);
+  border-color: var(--primary);
+}
+.ttt-square[aria-label^='Cell with O'] {
+  color: var(--accent);
+  background: rgba(255,87,34,0.08);
+  border-color: var(--accent);
+}
+
+/* Status and result */
+.ttt-status {
+  margin: 10px 0 18px 0;
+  font-size: 1.13rem;
+  font-weight: 500;
+  color: var(--secondary);
+  min-height: 2.2em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.ttt-status-winner {
+  color: var(--accent);
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+.ttt-status-draw {
+  color: var(--secondary);
+  opacity: 0.75;
+  font-size: 1.1rem;
+  font-weight: 500;
+}
+
+.ttt-reset-btn {
+  background: var(--primary);
+  color: #fff;
+  border: none;
+  border-radius: 100px;
+  padding: 0.66em 2.3em 0.66em 2.3em;
+  font-size: 1.04rem;
+  font-weight: 600;
+  letter-spacing: 0.012em;
+  box-shadow: 0 1px 8px 0 rgba(25,118,210,0.08);
+  cursor: pointer;
+  margin-top: 14px;
+  transition: background 0.17s, box-shadow 0.17s;
+}
+.ttt-reset-btn:hover, .ttt-reset-btn:focus {
+  background: var(--accent);
+  color: #fff;
+  box-shadow: 0 4px 18px 0 rgba(255,87,34,0.09);
+  outline: none;
+}
+
+/* Footer for minimal branding */
+.ttt-footer {
+  margin-top: 48px;
+  text-align: center;
+  color: var(--secondary);
+  font-size: 0.93em;
+  opacity: 0.75;
+  font-weight: 400;
+}
+.ttt-footer a {
+  color: var(--accent);
+  text-decoration: none;
+}
+.ttt-footer a:hover {
+  text-decoration: underline;
+}
+
+/* Responsive for mobile */
+@media (max-width: 600px) {
+  .ttt-container {
+    padding: 1.15rem 0.7rem 1.1rem 0.7rem;
+    min-width: 0;
+  }
+  .ttt-board {
+    grid-template-columns: repeat(3, var(--square-size-mobile));
+    grid-template-rows: repeat(3, var(--square-size-mobile));
+    gap: 0.52rem;
+  }
+  .ttt-square {
+    width: var(--square-size-mobile);
+    height: var(--square-size-mobile);
+    font-size: 1.75rem;
+    padding: 0;
+  }
+  .ttt-player-row {
+    font-size: 1.04rem;
+    gap: 0.7rem;
+  }
+}
